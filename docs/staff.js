@@ -541,6 +541,9 @@ function showPage(name) {
   const pg = document.getElementById('page-' + name);
   if (pg) pg.classList.add('active');
 
+  // Redirect removed tabs
+  if (name === 'campus') { showPage('turnover'); return; }
+
   if (!TAB_RENDERED.has(name)) {
     TAB_RENDERED.add(name);
     if (name === 'overview')  renderOverview();
@@ -548,9 +551,9 @@ function showPage(name) {
       populateTurnoverSYSelect();
       const sel = document.getElementById('turnover-sy-select');
       renderTurnoverPage(sel.value);
+      renderCampus();
     }
     if (name === 'positions') renderPositions();
-    if (name === 'campus')    renderCampus();
   }
 }
 
@@ -629,7 +632,7 @@ async function init() {
   document.getElementById('campus-search').addEventListener('input', e => {
     campusSearch = e.target.value;
     campusPage   = 0;
-    if (TAB_RENDERED.has('campus')) renderCampus();
+    if (TAB_RENDERED.has('turnover')) renderCampus();
   });
 
   initSitenav();

@@ -13,7 +13,7 @@
   <meta name="theme-color" content="#1a4545">
   <title>CISD Staff Watch — CISD Board Monitor</title>
   <meta name="description" content="Independent tracking of Conroe ISD staff hiring, departures, and open positions from official board meeting HR reports.">
-  <link rel="stylesheet" href="styles.css?v=20260609a">
+  <link rel="stylesheet" href="styles.css?v=20260609b">
 </head>
 <body>
 
@@ -44,11 +44,12 @@
         <button class="sitenav__tog" type="button" aria-expanded="false">All Sites &#9660;</button>
         <div class="sitenav__chips">
           <a class="sitenav__chip" href="https://cisd.boardmonitor.app">Hub</a>
-          <a class="sitenav__chip" href="https://cisd-meetings.boardmonitor.app">Board Meetings</a>
-          <a class="sitenav__chip" href="https://cisd-finance.boardmonitor.app">Finance</a>
+          <a class="sitenav__chip" href="https://cisd-meetings.boardmonitor.app">Meetings</a>
           <a class="sitenav__chip" href="https://cisd-performance.boardmonitor.app">Performance</a>
+          <a class="sitenav__chip" href="https://cisd-staff.boardmonitor.app" aria-current="page">Staff</a>
+          <a class="sitenav__chip" href="https://cisd-finance.boardmonitor.app">Finance</a>
           <a class="sitenav__chip" href="https://cisd-policy.boardmonitor.app">Policy</a>
-          <a class="sitenav__chip" aria-current="page" href="#">Staff</a>
+          <a class="sitenav__chip" href="https://cisd-books.boardmonitor.app">Books</a>
         </div>
       </nav>
     </div>
@@ -59,9 +60,8 @@
     <div class="wrap">
       <div class="tab-nav__tabs">
         <button class="tab-btn active" data-page="overview"   type="button">Overview</button>
-        <button class="tab-btn"        data-page="turnover"   type="button">Turnover</button>
+        <button class="tab-btn"        data-page="turnover"   type="button">Hiring &amp; Departures</button>
         <button class="tab-btn"        data-page="positions"  type="button">Open Positions</button>
-        <button class="tab-btn"        data-page="campus"     type="button">By Campus</button>
       </div>
     </div>
   </nav>
@@ -153,6 +153,30 @@
         </table>
       </div>
 
+      <div class="section-title" style="margin-top:2rem">By Campus &amp; Department
+        <span class="section-subtitle">Professional staff hires and departures by location</span>
+      </div>
+      <div class="type-filters" id="type-filters"></div>
+      <div class="search-bar">
+        <input type="search" id="campus-search" placeholder="Search campus or department…" autocomplete="off">
+      </div>
+      <div style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:0.5rem" id="campus-count-label"></div>
+      <div style="overflow-x:auto">
+        <table class="data-table" id="campus-table">
+          <thead><tr>
+            <th class="sortable" data-sort="dept">Campus / Department <span class="sort-arrow"></span></th>
+            <th class="col-hide">Type</th>
+            <th class="num sortable" data-sort="hires">All-Time Hires <span class="sort-arrow"></span></th>
+            <th class="num sortable" data-sort="depts">All-Time Departures <span class="sort-arrow"></span></th>
+            <th class="num sortable" data-sort="net">Net <span class="sort-arrow"></span></th>
+            <th class="num sortable col-hide" data-sort="curr_h">Latest FY Hires <span class="sort-arrow"></span></th>
+            <th class="num sortable col-hide" data-sort="curr_d">Latest FY Departures <span class="sort-arrow"></span></th>
+          </tr></thead>
+          <tbody id="campus-body"></tbody>
+        </table>
+      </div>
+      <div class="pagination" id="campus-pagination"></div>
+
     </div><!-- /page-turnover -->
 
     <!-- ── OPEN POSITIONS ── -->
@@ -183,35 +207,6 @@
 
     </div><!-- /page-positions -->
 
-    <!-- ── BY CAMPUS ── -->
-    <div class="page" id="page-campus">
-
-      <div class="section-title">Campus &amp; Department Breakdown
-        <span class="section-subtitle">Professional staff hires and departures by location</span>
-      </div>
-      <div class="type-filters" id="type-filters"></div>
-      <div class="search-bar">
-        <input type="search" id="campus-search" placeholder="Search campus or department…" autocomplete="off">
-      </div>
-      <div style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:0.5rem" id="campus-count-label"></div>
-      <div style="overflow-x:auto">
-        <table class="data-table" id="campus-table">
-          <thead><tr>
-            <th class="sortable" data-sort="dept">Campus / Department <span class="sort-arrow"></span></th>
-            <th class="col-hide">Type</th>
-            <th class="num sortable" data-sort="hires">All-Time Hires <span class="sort-arrow"></span></th>
-            <th class="num sortable" data-sort="depts">All-Time Departures <span class="sort-arrow"></span></th>
-            <th class="num sortable" data-sort="net">Net <span class="sort-arrow"></span></th>
-            <th class="num sortable col-hide" data-sort="curr_h">Latest FY Hires <span class="sort-arrow"></span></th>
-            <th class="num sortable col-hide" data-sort="curr_d">Latest FY Departures <span class="sort-arrow"></span></th>
-          </tr></thead>
-          <tbody id="campus-body"></tbody>
-        </table>
-      </div>
-      <div class="pagination" id="campus-pagination"></div>
-
-    </div><!-- /page-campus -->
-
   </main>
 
   <!-- Footer -->
@@ -223,6 +218,6 @@
     </div>
   </footer>
 
-  <script src="staff.js?v=20260609a"></script>
+  <script src="staff.js?v=20260609b"></script>
 </body>
 </html>
