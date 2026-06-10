@@ -1,21 +1,21 @@
-/* CISD Staff Watch - styles.css v20260609a
-   Deep teal palette - shared boardmonitor design system */
+/* CISD Staff Trends - styles.css v20260609c
+   Warm amber palette - shared boardmonitor design system */
 
 /* ── Custom properties ─────────────────────────────────────────── */
 :root {
-  --bg-header:      #1a4545;
-  --bg-header-dark: #0e2c2c;
-  --border-accent:  #c9a227;
+  --bg-header:      #7c4010;
+  --bg-header-dark: #4d2608;
+  --border-accent:  #d4892a;
 
-  --bg-page:        #f2f8f7;
+  --bg-page:        #fdf6ef;
   --bg-card:        #ffffff;
-  --bg-card-alt:    #edf5f4;
+  --bg-card-alt:    #fef3e5;
 
-  --text-primary:   #0f1e1e;
-  --text-secondary: #4a6868;
+  --text-primary:   #1e1207;
+  --text-secondary: #6b4a2a;
   --text-header:    #ffffff;
 
-  --border-subtle:  #cce0de;
+  --border-subtle:  #e8d5bc;
 
   --ctrl-bg:        rgba(255,255,255,0.15);
   --ctrl-border:    rgba(255,255,255,0.3);
@@ -71,9 +71,9 @@ a { color: inherit; }
 .hero {
   background:
     linear-gradient(135deg,
-      rgba(14,44,44,.62)  0%,
-      rgba(26,69,69,.56) 50%,
-      rgba(30,96,80,.50) 100%),
+      rgba(77,38,8,.68)   0%,
+      rgba(124,64,16,.60) 50%,
+      rgba(180,96,24,.50) 100%),
     url('images/hero-bg.png') center top / cover no-repeat;
   background-color: var(--bg-header-dark);
   padding: var(--sp-8) 0 var(--sp-6);
@@ -233,7 +233,7 @@ main { max-width: var(--max-w); margin: 0 auto; padding: var(--sp-5) var(--sp-6)
 
 /* Sortable */
 th.sortable { cursor: pointer; user-select: none; white-space: nowrap; }
-th.sortable:hover { background: #ddecea; }
+th.sortable:hover { background: #fce8d0; }
 th.sortable.sort-asc  .sort-arrow::after { content: " ▲"; font-size: .7em; opacity: .8; }
 th.sortable.sort-desc .sort-arrow::after { content: " ▼"; font-size: .7em; opacity: .8; }
 th.sortable:not(.sort-asc):not(.sort-desc) .sort-arrow::after { content: " ⇅"; font-size: .7em; opacity: .35; }

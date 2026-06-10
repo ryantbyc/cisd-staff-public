@@ -106,10 +106,10 @@ ${yLines}${bars}${xLabels}${leg}
 </svg>`;
 }
 
-// Cumulative net line chart — one line per school year
+// Cumulative net line chart — one line per school year, year labels at end of each line
 function buildCumulativeChart(syMonthlyMap) {
-  const W = 720, H = 230;
-  const PAD = {top: 26, right: 20, bottom: 42, left: 60};
+  const W = 740, H = 230;
+  const PAD = {top: 26, right: 58, bottom: 42, left: 60};
   const cW = W - PAD.left - PAD.right;
   const cH = H - PAD.top - PAD.bottom;
   const n  = TURN_MONTH_LABELS.length;
@@ -152,29 +152,31 @@ function buildCumulativeChart(syMonthlyMap) {
   const y0 = scaleY(0);
   const zeroLine = `<line x1="${PAD.left}" x2="${W - PAD.right}" y1="${y0.toFixed(1)}" y2="${y0.toFixed(1)}" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="5,3"/>`;
 
-  let paths = '';
-  series.forEach(({cumArr, color}) => {
+  let paths = '', endLabels = '';
+  series.forEach(({sy, cumArr, color}) => {
     let d = '';
+    let lastX = null, lastY = null;
     cumArr.forEach((v, i) => {
       if (v === null) return;
-      const x = scaleX(i).toFixed(1), y = scaleY(v).toFixed(1);
-      d += d === '' ? `M${x},${y}` : ` L${x},${y}`;
+      const x = scaleX(i), y = scaleY(v);
+      d += d === '' ? `M${x.toFixed(1)},${y.toFixed(1)}` : ` L${x.toFixed(1)},${y.toFixed(1)}`;
+      lastX = x; lastY = y;
     });
-    if (d) paths += `<path d="${d}" stroke="${color}" stroke-width="2.5" fill="none" stroke-linejoin="round"/>`;
+    if (d) {
+      paths += `<path d="${d}" stroke="${color}" stroke-width="2.5" fill="none" stroke-linejoin="round"/>`;
+      if (lastX !== null) {
+        endLabels += `<circle cx="${lastX.toFixed(1)}" cy="${lastY.toFixed(1)}" r="3.5" fill="${color}"/>`;
+        endLabels += `<text x="${(lastX + 7).toFixed(1)}" y="${(lastY + 4).toFixed(1)}" font-size="10" fill="${color}" font-weight="700">${sy}</text>`;
+      }
+    }
   });
 
   const xLabels = TURN_MONTH_LABELS.map((lbl, i) =>
     `<text x="${scaleX(i).toFixed(1)}" y="${H - 8}" text-anchor="middle" font-size="11" fill="#888">${lbl}</text>`
   ).join('');
 
-  const leg = series.map(({sy, color}, ci) => {
-    const lx = PAD.left + ci * 85;
-    return `<rect x="${lx}" y="6" width="20" height="4" fill="${color}" rx="2"/>
-<text x="${lx + 24}" y="14" font-size="11" fill="#555">${sy}</text>`;
-  }).join('');
-
   return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:${W}px;display:block" aria-hidden="true">
-${yLines}${zeroLine}${paths}${xLabels}${leg}
+${yLines}${zeroLine}${paths}${endLabels}${xLabels}
 </svg>`;
 }
 
@@ -604,7 +606,7 @@ async function init() {
   // Footer
   if (META.last_updated) {
     document.getElementById('footer-updated').textContent =
-      'Last updated: ' + fmtDateShort(META.last_updated.slice(0, 10));
+      'Data refreshed ' + fmtDateShort(META.last_updated.slice(0, 10));
   }
 
   // Tab nav wiring
