@@ -1,0 +1,50 @@
+[
+  {
+    "date": "2026-05-22",
+    "total": 294,
+    "certified": 195,
+    "paraprofessional": 81,
+    "auxiliary": 18,
+    "teacher": 156
+  },
+  {
+    "date": "2026-05-27",
+    "total": 289,
+    "certified": 203,
+    "paraprofessional": 69,
+    "auxiliary": 17,
+    "teacher": 161
+  },
+  {
+    "date": "2026-05-29",
+    "total": 272,
+    "certified": 184,
+    "paraprofessional": 70,
+    "auxiliary": 18,
+    "teacher": 147
+  },
+  {
+    "date": "2026-05-30",
+    "total": 270,
+    "certified": 183,
+    "paraprofessional": 69,
+    "auxiliary": 18,
+    "teacher": 146
+  },
+  {
+    "date": "2026-06-02",
+    "total": 243,
+    "certified": 168,
+    "paraprofessional": 57,
+    "auxiliary": 18,
+    "teacher": 132
+  },
+  {
+    "date": "2026-06-05",
+    "total": 232,
+    "certified": 167,
+    "paraprofessional": 46,
+    "auxiliary": 19,
+    "teacher": 130
+  }
+]

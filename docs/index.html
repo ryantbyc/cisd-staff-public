@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; font-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'self';">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#1a4545">
+  <title>CISD Staff Watch — CISD Board Monitor</title>
+  <meta name="description" content="Independent tracking of Conroe ISD staff hiring, departures, and open positions from official board meeting HR reports.">
+  <link rel="stylesheet" href="styles.css?v=20260609a">
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <!-- Prelaunch disclaimer -->
+  <div class="prelaunch-overlay" id="prelaunch-overlay" role="dialog" aria-modal="true" aria-labelledby="prelaunch-title">
+    <div class="prelaunch-modal">
+      <span class="prelaunch-badge">Preview</span>
+      <h2 id="prelaunch-title">Data is not yet independently verified</h2>
+      <div class="prelaunch-body">
+        <p>This site is under active development. All staff movement data is extracted from official CISD Board of Trustees HR Personnel Reports published in public board meeting agendas.</p>
+        <p><strong>What this data captures:</strong> Professional staff hires (Employment of Professional Personnel) and departures (Personnel Resignations and Retirements) as reported to the Board. Substitute teachers and contract renewals are excluded.</p>
+        <p><strong>Limitations:</strong> Board meeting date is used as the record date. Individual names are not published. Staff headcount is not available from these reports, so turnover rate cannot be calculated.</p>
+        <p>Numbers may change as historical board packets are re-processed. Use this data for research and trend analysis only.</p>
+      </div>
+      <button class="prelaunch-ack-btn" id="prelaunch-ack" type="button">I understand — continue</button>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Conroe ISD &middot; Staff Watch</p>
+      <h1>CISD Staff Watch</h1>
+      <p class="lede">Independent tracking of Conroe ISD staff hiring, departures, and open positions from official board meeting HR reports.</p>
+      <nav class="sitenav" aria-label="CISD Board Monitor sites">
+        <button class="sitenav__tog" type="button" aria-expanded="false">All Sites &#9660;</button>
+        <div class="sitenav__chips">
+          <a class="sitenav__chip" href="https://cisd.boardmonitor.app">Hub</a>
+          <a class="sitenav__chip" href="https://cisd-meetings.boardmonitor.app">Board Meetings</a>
+          <a class="sitenav__chip" href="https://cisd-finance.boardmonitor.app">Finance</a>
+          <a class="sitenav__chip" href="https://cisd-performance.boardmonitor.app">Performance</a>
+          <a class="sitenav__chip" href="https://cisd-policy.boardmonitor.app">Policy</a>
+          <a class="sitenav__chip" aria-current="page" href="#">Staff</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Tab navigation -->
+  <nav class="tab-nav" aria-label="Sections">
+    <div class="wrap">
+      <div class="tab-nav__tabs">
+        <button class="tab-btn active" data-page="overview"   type="button">Overview</button>
+        <button class="tab-btn"        data-page="turnover"   type="button">Turnover</button>
+        <button class="tab-btn"        data-page="positions"  type="button">Open Positions</button>
+        <button class="tab-btn"        data-page="campus"     type="button">By Campus</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <main id="main-content">
+    <div id="loading">Loading staff data&hellip;</div>
+
+    <!-- ── OVERVIEW ── -->
+    <div class="page" id="page-overview">
+
+      <div class="summary-cards" id="overview-cards"></div>
+
+      <div id="overview-insight"></div>
+
+      <div class="section-title">Staff Category Breakdown
+        <span class="section-subtitle" id="overview-cat-subtitle"></span>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="data-table" id="cat-table">
+          <thead><tr>
+            <th>Category</th>
+            <th class="num">Hires</th>
+            <th class="num">Departures</th>
+            <th class="num">Net</th>
+            <th class="num col-hide">Prior SY Hires</th>
+            <th class="num col-hide">Prior SY Departures</th>
+          </tr></thead>
+          <tbody id="cat-body"></tbody>
+        </table>
+      </div>
+
+      <div class="section-title" style="margin-top:2rem">Year-over-Year Summary</div>
+      <div style="overflow-x:auto">
+        <table class="data-table" id="yoy-table">
+          <thead><tr>
+            <th>School Year</th>
+            <th class="num">Hires</th>
+            <th class="num">Departures</th>
+            <th class="num">Net</th>
+            <th class="num col-hide">Note</th>
+          </tr></thead>
+          <tbody id="yoy-body"></tbody>
+        </table>
+      </div>
+
+      <p style="font-size:0.78rem;color:var(--text-secondary);margin-top:1rem" id="overview-source"></p>
+
+    </div><!-- /page-overview -->
+
+    <!-- ── TURNOVER ── -->
+    <div class="page" id="page-turnover">
+
+      <div class="fy-selector">
+        <label for="turnover-sy-select">School Year:</label>
+        <select id="turnover-sy-select" class="fy-select"></select>
+      </div>
+
+      <div class="section-title">Monthly Hires &amp; Departures
+        <span class="section-subtitle">Jul–Jun (Texas school year cycle)</span>
+      </div>
+      <div class="chart-wrap" id="turnover-monthly-chart"></div>
+
+      <div class="section-title" style="margin-top:2rem">Cumulative Net Staff Change
+        <span class="section-subtitle">Running total of hires minus departures per school year</span>
+      </div>
+      <div class="chart-wrap" id="turnover-cumulative-chart"></div>
+
+      <div class="section-title" style="margin-top:2rem">Monthly Detail
+        <span class="section-subtitle" id="turnover-monthly-subtitle"></span>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="data-table" id="turnover-monthly-table">
+          <thead><tr>
+            <th>Month</th>
+            <th class="num">Hires</th>
+            <th class="num">Departures</th>
+            <th class="num">Net</th>
+          </tr></thead>
+          <tbody id="turnover-monthly-body"></tbody>
+          <tfoot>
+            <tr style="background:var(--bg-card-alt);font-weight:600">
+              <td>Total</td>
+              <td class="num" id="turnover-total-hires"></td>
+              <td class="num" id="turnover-total-depts"></td>
+              <td class="num" id="turnover-total-net"></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+    </div><!-- /page-turnover -->
+
+    <!-- ── OPEN POSITIONS ── -->
+    <div class="page" id="page-positions">
+
+      <div class="positions-cards" id="positions-cards"></div>
+
+      <div class="section-title">Open Positions — Daily Trend
+        <span class="section-subtitle">From CISD's public job postings (scraped daily)</span>
+      </div>
+      <div class="chart-wrap" id="positions-chart"></div>
+
+      <div class="section-title" style="margin-top:2rem">Tracked Snapshots</div>
+      <p style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:0.75rem">Each row is one daily scrape of CISD's job posting board.</p>
+      <div style="overflow-x:auto">
+        <table class="data-table" id="positions-table">
+          <thead><tr>
+            <th>Date</th>
+            <th class="num">Total</th>
+            <th class="num">Teachers</th>
+            <th class="num col-hide">Certified</th>
+            <th class="num col-hide">Para</th>
+            <th class="num col-hide">Auxiliary</th>
+          </tr></thead>
+          <tbody id="positions-body"></tbody>
+        </table>
+      </div>
+
+    </div><!-- /page-positions -->
+
+    <!-- ── BY CAMPUS ── -->
+    <div class="page" id="page-campus">
+
+      <div class="section-title">Campus &amp; Department Breakdown
+        <span class="section-subtitle">Professional staff hires and departures by location</span>
+      </div>
+      <div class="type-filters" id="type-filters"></div>
+      <div class="search-bar">
+        <input type="search" id="campus-search" placeholder="Search campus or department…" autocomplete="off">
+      </div>
+      <div style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:0.5rem" id="campus-count-label"></div>
+      <div style="overflow-x:auto">
+        <table class="data-table" id="campus-table">
+          <thead><tr>
+            <th class="sortable" data-sort="dept">Campus / Department <span class="sort-arrow"></span></th>
+            <th class="col-hide">Type</th>
+            <th class="num sortable" data-sort="hires">All-Time Hires <span class="sort-arrow"></span></th>
+            <th class="num sortable" data-sort="depts">All-Time Departures <span class="sort-arrow"></span></th>
+            <th class="num sortable" data-sort="net">Net <span class="sort-arrow"></span></th>
+            <th class="num sortable col-hide" data-sort="curr_h">Latest FY Hires <span class="sort-arrow"></span></th>
+            <th class="num sortable col-hide" data-sort="curr_d">Latest FY Departures <span class="sort-arrow"></span></th>
+          </tr></thead>
+          <tbody id="campus-body"></tbody>
+        </table>
+      </div>
+      <div class="pagination" id="campus-pagination"></div>
+
+    </div><!-- /page-campus -->
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="foot">
+    <div class="wrap">
+      <p>CISD Staff Watch &mdash; <a href="https://cisd.boardmonitor.app">CISD Board Monitor</a></p>
+      <p class="foot__note" id="footer-updated"></p>
+      <p>Data sourced from official CISD Board of Trustees HR Personnel Reports. Not affiliated with Conroe ISD.</p>
+    </div>
+  </footer>
+
+  <script src="staff.js?v=20260609a"></script>
+</body>
+</html>
