@@ -152,9 +152,11 @@ a { color: inherit; }
 }
 .tab-btn:hover { color: var(--text-primary); }
 .tab-btn.active { color: var(--text-primary); border-bottom-color: var(--border-accent); font-weight: 600; }
+/* Mobile: tabs scroll horizontally — each tab keeps its natural width */
 @media (max-width: 600px) {
-  .tab-nav__tabs { flex-wrap: nowrap; }
-  .tab-btn { flex: 1 1 0; min-width: 0; text-align: center; padding: var(--sp-2) var(--sp-2); font-size: 0.78rem; }
+  .tab-nav__tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .tab-nav__tabs::-webkit-scrollbar { display: none; }
+  .tab-btn { flex: 0 0 auto; padding: var(--sp-2) var(--sp-3); font-size: 0.78rem; }
 }
 
 /* ── Main + pages ──────────────────────────────────────────────── */
