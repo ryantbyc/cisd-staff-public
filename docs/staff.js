@@ -326,10 +326,6 @@ function renderOverview() {
   }).join('');
   document.getElementById('yoy-body').innerHTML = yoyRows;
 
-  // ── Source note ──
-  const updated = META.last_updated ? fmtDateShort(META.last_updated.slice(0, 10)) : '';
-  document.getElementById('overview-source').textContent =
-    `Data from ${META.source || 'CISD Board HR Reports'}. Last updated: ${updated}.`;
 }
 
 // ─── TURNOVER ────────────────────────────────────────────────────────────────
@@ -604,12 +600,6 @@ async function init() {
   }
 
   document.getElementById('loading').style.display = 'none';
-
-  // Footer
-  if (META.last_updated) {
-    document.getElementById('footer-updated').textContent =
-      'Data refreshed ' + fmtDateShort(META.last_updated.slice(0, 10));
-  }
 
   // Tab nav wiring
   document.querySelectorAll('.tab-btn').forEach(btn => {
