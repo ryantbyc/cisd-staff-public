@@ -125,6 +125,10 @@ a { color: inherit; }
   .sitenav[data-open] .sitenav__chip { justify-content:center; padding:9px var(--sp-3); font-size:13px; }
 }
 
+/* ── Disclaimer ───────────────────────────────────────────────── */
+.disclaimer { background:rgba(0,0,0,.04); border-bottom:1px solid var(--border-subtle); padding:var(--sp-2) 0; }
+.disclaimer .wrap { font-size:13px; font-style:italic; color:var(--text-secondary); }
+
 /* ── Tab nav ───────────────────────────────────────────────────── */
 .tab-nav {
   background: var(--bg-card);
