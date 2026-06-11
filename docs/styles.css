@@ -70,11 +70,11 @@ a { color: inherit; }
 /* ── Hero ──────────────────────────────────────────────────────── */
 .hero {
   background:
-    linear-gradient(135deg,
-      rgba(77,38,8,.68)   0%,
-      rgba(124,64,16,.60) 50%,
-      rgba(180,96,24,.50) 100%),
-    url('images/hero-bg.jpg') center top / cover no-repeat;
+    linear-gradient(180deg,
+      rgba(77,38,8,.30)   0%,
+      rgba(77,38,8,.60)  55%,
+      rgba(77,38,8,.82) 100%),
+    url('images/hero-bg.jpg') center center / cover no-repeat;
   background-color: var(--bg-header-dark);
   padding: var(--sp-8) 0 var(--sp-6);
   color: var(--text-header);
