@@ -362,3 +362,25 @@ th.sortable:not(.sort-asc):not(.sort-desc) .sort-arrow::after { content: " ⇅";
   .prelaunch-modal { padding: 1.5rem 1.25rem 1.25rem; }
   .prelaunch-ack-btn { align-self: stretch; text-align: center; }
 }
+
+/* ── Campus table: mobile-compact ──────────────────────────────── */
+/* At ≤680px the All-Time Departures column (4th child) is hidden;
+   Net already captures net flow and keeps the table in 3 columns. */
+@media (max-width: 680px) {
+  #campus-table th:nth-child(4),
+  #campus-table td:nth-child(4) { display: none; }
+
+  #campus-table th,
+  #campus-table td { padding: .3rem .45rem; font-size: 0.8rem; }
+
+  /* Campus names wrap instead of forcing horizontal scroll */
+  #campus-table td:first-child {
+    white-space: normal;
+    word-break: break-word;
+    max-width: 160px;
+  }
+}
+
+@media (max-width: 420px) {
+  #campus-table td:first-child { max-width: 110px; }
+}
