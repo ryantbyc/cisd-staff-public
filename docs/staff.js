@@ -601,6 +601,12 @@ async function init() {
 
   document.getElementById('loading').style.display = 'none';
 
+  // Footer last-updated
+  const footerDate = document.getElementById('footer-updated');
+  if (footerDate && META.last_updated) {
+    footerDate.textContent = 'Data refreshed ' + fmtDateShort(META.last_updated.slice(0, 10));
+  }
+
   // Tab nav wiring
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => showPage(btn.dataset.page));
