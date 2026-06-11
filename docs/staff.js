@@ -186,7 +186,7 @@ function buildPositionsChart(data) {
     return '<p style="color:#888;font-size:.85rem;padding:1rem 0">Insufficient data for trend chart.</p>';
   }
   const W = 720, H = 230;
-  const PAD = {top: 26, right: 20, bottom: 50, left: 50};
+  const PAD = {top: 26, right: 40, bottom: 50, left: 50};
   const cW = W - PAD.left - PAD.right;
   const cH = H - PAD.top - PAD.bottom;
   const n  = data.length;
@@ -195,6 +195,8 @@ function buildPositionsChart(data) {
   const teachers = data.map(d => d.teacher || 0);
   const yMax = Math.max(...totals, 10);
   const yTicks = niceTicks(0, yMax, 5);
+  const yStep = yTicks.length > 1 ? yTicks[1] - yTicks[0] : yMax;
+  while (yTicks[yTicks.length - 1] < yMax) yTicks.push(yTicks[yTicks.length - 1] + yStep);
   const yHi = yTicks[yTicks.length - 1];
 
   const scaleY = v => PAD.top + cH - (v / yHi) * cH;
