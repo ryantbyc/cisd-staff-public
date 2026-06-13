@@ -62,5 +62,13 @@
     "paraprofessional": 60,
     "auxiliary": 18,
     "teacher": 132
+  },
+  {
+    "date": "2026-06-13",
+    "total": 215,
+    "certified": 148,
+    "paraprofessional": 49,
+    "auxiliary": 18,
+    "teacher": 111
   }
 ]
